@@ -1,0 +1,23 @@
+- alias: Turn off group Camera
+  trigger:
+    - platform: state
+      entity_id: group.camera_switches
+      to: 'off'
+    - platform: homeassistant
+      event: start 
+  action:
+    service: group.set_visibility
+    entity_id: group.camera
+    data:
+      visible: False
+
+- alias: Turn on group Camera
+  trigger:
+    platform: state
+    entity_id: group.camera_switches
+    to: 'on'
+  action:
+    service: group.set_visibility
+    entity_id: group.camera
+    data:
+      visible: True

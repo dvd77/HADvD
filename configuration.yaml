@@ -1,0 +1,189 @@
+#################################################################
+## Home Assistant
+#################################################################
+
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: -1
+  unit_system: metric
+  time_zone: Europe/Amsterdam
+  customize: !include customize.yaml
+
+frontend:
+updater:
+  reportorting: no
+sun:
+conversation:
+logger:
+  default: error
+  logs:
+    request.packages.urllib3: critical
+    homeassistant.components.camera: critical
+history:
+logbook:
+config:
+discovery:
+  ignore:
+    - apple_tv
+    - ikea_tradfri
+    - axis
+http:
+  api_password: !secret api_password
+  ssl_certificate: !secret ssl_certificate
+  ssl_key: !secret ssl_key
+  base_url: !secret base_url
+  trusted_networks:
+    - 127.0.0.1
+    - !secret localnetwork
+    - !secret vpnnetwork
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+
+
+#################################################################
+## Components
+#################################################################
+
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+ios:
+
+tts:
+  - platform: google
+
+
+#zoneminder:
+#  host: !secret zoneminder_host
+#  ssl: False
+#  username: !secret zoneminder_user
+#  password: !secret zoneminder_password
+
+toon:
+    username: !secret toon_username
+    password: !secret toon_password
+
+apple_tv:
+  - host: !secret appletv_host
+    login_id: !secret appletv_login_id
+    credentials: !secret appletv_credentials
+
+media_player:
+  - platform: spotify
+    client_id: !secret spotify_clientid
+    client_secret: !secret spotify_clientsecret
+
+
+
+camera:
+  - platform: mjpeg
+    name: Voordeur
+    mjpeg_url: !secret cam_voordeur_mjpeg_url
+    still_image_url: !secret cam_voordeur_still_url
+#  - platform: generic
+#    name: Locatie Daniel
+#    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.iphonedaniel.attributes.latitude }},{{ states.device_tracker.iphonedaniel.attributes.longitude }}&zoom=16&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.iphonedaniel.attributes.latitude }},{{ states.device_tracker.iphonedaniel.attributes.longitude }}
+#    limit_refetch_to_url_change: true
+#  - platform: generic
+#    name: Locatie Judith
+#    still_image_url: https://maps.googleapis.com/maps/api/staticmap?center={{ states.device_tracker.iphone_van_judith.attributes.latitude }},{{ states.device_tracker.iphone_van_judith.attributes.longitude }}&zoom=17&size=500x500&maptype=roadmap&markers=color:blue%7Clabel:P%7C{{ states.device_tracker.iphone_van_judith.attributes.latitude }},{{ states.device_tracker.iphone_van_judith.attributes.longitude }}
+#    limit_refetch_to_url_change: true
+  - platform: generic
+    name: buienradar
+    still_image_url:  http://api.buienradar.nl/image/1.0/RadarMapNL?w=500&h=512
+  - platform: mjpeg
+    name: Woonkamer
+    mjpeg_url: !secret camera_woonkamer
+  - platform: mjpeg
+    name: Poezenkamer
+    mjpeg_url: !secret camera_poezenkamer
+
+
+#  - platform: zoneminder
+
+tradfri:
+  host: !secret tradfri_host
+#  api_key: !secret tradfri_key
+
+
+xiaomi_aqara:
+  gateways:
+    - mac: !secret xiaomimac1
+      key: !secret xiaomikey1
+      host: !secret xiaomihost
+
+
+mqtt:
+  client_id: home-assistant-1
+  broker: localhost
+  port: 1883
+  username: !secret mqtt_user
+  password: !secret mqtt_password
+
+telegram_bot:
+  - platform: polling
+    api_key: !secret telegram_api
+    allowed_chat_ids:
+      - !secret telegram_chatid_dvd
+
+notify:
+  - name: telegram
+    platform: telegram
+    chat_id: !secret telegram_chatid_dvd
+  - name: iphones
+    platform: group
+    services:
+      - service: ios_iphonedaniel
+
+device_tracker:
+  - platform: unifi
+    host: !secret unifi_host
+    port: 8443
+    username: !secret unifi_username
+    password: !secret unifi_password
+    verify_ssl: false
+
+#media_player:
+#  - platform: mpd
+#    host: !secret mpd_host
+#    name: mpd
+
+panel_custom:
+  - name: alarm
+    sidebar_title: Alarm
+    sidebar_icon: mdi:security-home
+    url_path: alarm
+    config:
+      alarmid: alarm_control_panel.house
+
+history_graph:
+  power:
+    name: Stroom verbruik
+    entities:
+      - sensor.power_current
+    hours_to_show: 120
+  licht:
+    name: Licht Woonkamer
+    entities:
+      - sensor.illumination_34ce008d4d88
+    hours_to_show: 48
+
+#################################################################
+## Includes
+#################################################################
+
+scene: !include scenes.yaml
+group: !include groups.yaml
+automation: !include_dir_merge_list automations
+script: !include scripts.yaml
+switch: !include switch.yaml
+sensor: !include sensors.yaml
+light: !include light.yaml
+binary_sensor: !include binary_sensors.yaml
+input_boolean: !include input_boolean.yaml
+input_number: !include input_numbers.yaml
+alarm_control_panel: !include alarm.yaml
+#input_select: !include input-selects.yaml

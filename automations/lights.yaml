@@ -1,0 +1,89 @@
+
+
+- alias: 'Light level is Low - Switch On'
+
+#  trigger:
+#    - platform: sun
+#      event: sunset
+#      offset: '-1:00:00'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.low_lux
+      to: 'on'
+      for:
+        minutes: 2
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: "07:00:00"
+      - condition: sun
+        before: sunset
+        before_offset: "01:00:00"
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+  action:
+    - service: light.turn_on
+      entity_id:
+        - group.woonkamer
+        - light.overloop
+#    - service: switch.turn_on
+#      entity_id:
+#        switch.gang_lamp
+
+- alias: 'Light level is High - Switch Off'
+
+#  trigger:
+#    - platform: sun
+#      event: sunset
+#      offset: '-1:00:00'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.high_lux
+      to: 'on'
+      for:
+        minutes: 3
+  condition:
+    condition: and
+    conditions:
+      - condition: time
+        after: "07:00:00"
+      - condition: sun
+        before: sunset
+        before_offset: "01:00:01"
+      - condition: state
+        entity_id: group.familie
+        state: 'home'
+  action:
+    - service: light.turn_off
+      entity_id:
+        - group.woonkamer
+        - light.overloop
+
+
+
+
+
+- alias: 'Tuin licht aan in de avond'
+
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: '0:30:00'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        switch.buitenlamp_schuur
+
+- alias: 'Tuin licht uit in de nacht'
+
+  trigger:
+    - platform: time
+      at: '0:20:00'
+
+  action:
+    - service: switch.turn_off
+      entity_id:
+        switch.buitenlamp_schuur

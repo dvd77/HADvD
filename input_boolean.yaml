@@ -1,0 +1,50 @@
+bedtijd:
+  name: Bedtijd
+  initial: off
+  icon: mdi:hotel
+
+kids:
+  name: Kids
+  initial: off
+  icon: mdi:account-multiple
+
+test:
+  name: test
+  initial: off
+  icon: mdi:history
+
+alarm_triggered:
+  name: Alarm Triggered
+  icon: mdi:shield-outline
+
+enable_security:
+  name: Alarm Enabled
+  icon: mdi:shield-outline
+
+somebody_home:
+  name: Aanwezigheid overwrite
+
+slapen:
+  name: Slapen
+  initial: off
+  icon: mdi:sleep
+
+block_alarm_siren:
+  name: Block alarm Siren
+  icon: mdi:bullhorn
+block_flash_light:
+  name: Block flash light
+  icon: mdi:alarm-light
+
+block_deurbel:
+  name: Block deurbel
+  icon: mdi:bullhorn
+
+front_door_announcement:
+  name: Front door announcement
+  icon: mdi:bullhorn
+
+
+
+
+#  icon: mdi:toggle-switch

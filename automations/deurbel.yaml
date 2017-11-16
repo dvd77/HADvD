@@ -1,0 +1,27 @@
+- alias: 'Deurbel'
+  trigger:
+    - platform: mqtt
+      topic: home/deurbel/state
+      payload: "on"
+  condition:
+    - condition: state
+      entity_id: input_boolean.block_deurbel
+      state: 'off'
+  action:
+    - service: notify.telegram
+      data:
+        message: 'Er staat iemand aan de deur'
+        data:
+          photo:
+            - url: http://192.168.0.18/axis-cgi/jpg/image.cgi?resolution=320x240
+              caption: Bel - Voordeur
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomimac1
+        ringtone_id: 10
+        ringtone_vol: 15
+#    - service: script.start_flashing_color_light
+#    - service: tts.google_say
+#      data:
+#        message: 'Er staat iemand voor de deur'
+#        language: 'nl'

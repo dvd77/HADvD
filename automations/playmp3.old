@@ -1,0 +1,16 @@
+- alias: Test
+  trigger:
+    - platform: state
+      entity_id: input_boolean.test
+      to: 'on'
+
+  action:
+    - service: light.turn_on
+      entity_id: light.hoek_computer
+      data:
+        brightness: 150
+    - service: media_player.play_media
+      data:
+        entity_id: media_player.mpd
+        media_content_type: playlist
+        media_content_id: Deurbel

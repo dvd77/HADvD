@@ -1,0 +1,244 @@
+
+############################################################################
+# Views
+############################################################################
+
+default_view:
+ view: yes
+ name: Main
+ entities:
+   - group.camera_voordeur
+   - group.woonkamer
+   - group.eettafel
+   - group.media
+   - group.toon
+   - group.keuken
+   - group.buiten
+   - group.scenes
+
+Boven:
+ view: yes
+ entities:
+   - group.gang
+   - group.slaapkamer
+Utility:
+ view: yes
+ entities:
+   - group.energie
+   - group.hp_server
+   - calendar.danielvandoodewaardeu
+   - group.locatie
+   - group.speedtest
+   - media_player.apple_tv
+   - media_player.mpd
+Security:
+ view: yes
+ entities:
+   - group.deuren_en_ramen
+   - group.camera_switches
+   - group.familie
+   - group.alarm_status
+   - group.camera
+   - alarm_control_panel.house
+
+Weer:
+  view: yes
+  entities:
+    - group.buienradar
+    - group.weer_vooruitzicht
+    - group.klimaat
+
+Graphs:
+  name: Grafieken
+  view: yes
+  entities:
+    - history_graph.stroom_verbruik
+    - history_graph.licht_woonkamer
+
+System:
+    view: yes
+    name: System
+    entities:
+       - group.all_switches
+       - group.all_lights
+       - sensor.deurbel_sound
+       - group.all_automations
+       - group.all_devices
+       - group.all_scripts
+       - binary_sensor.physical_button
+       - scene.xiaomi
+       - input_boolean.test
+       - group.xiaomi_light
+       - sensor.illumination_34ce008d4d88
+
+###############################
+#Groups
+camera_voordeur:
+  entities:
+    - camera.voordeur
+
+Energie:
+ entities:
+    - sensor.power_current
+    - sensor.power_today
+    - sensor.gas_current
+    - sensor.gas_today
+Toon:
+ entities:
+    - climate.toon_van_eneco
+    - scene.toon_comfort
+    - scene.toon_thuis
+    - scene.toon_slapen
+    - scene.toon_weg
+Woonkamer:
+ entities:
+    - light.dressoir
+    - light.hoek_computer
+    - light.wand_links
+    - light.wand_rechts
+    - input_number.bright_woonkamer
+    - input_number.temp_woonkamer
+Eettafel:
+  entities:
+    - light.eettafel
+    - input_number.bright_eettafel
+    - input_number.temp_eettafel
+Keuken:
+  control: hidden
+  entities:
+    - group.afzuigkap
+    - input_number.bright_afzuigkap
+    - switch.spots
+    - group.plafond_keuken
+    - input_number.bright_plafond_keuken
+    - switch.ventilatie_stand_1
+    - switch.ventilatie_stand_2
+    - switch.ventilatie_stand_3
+Afzuigkap:
+  entities:
+    - light.afzuigkap1
+    - light.afzuigkap2
+Plafond Keuken:
+  entities:
+    - light.plafond_keuken1
+    - light.plafond_keuken2
+    - light.plafond_keuken3
+    - light.plafond_keuken4
+
+
+Gang:
+    - switch.gang_lamp
+    - light.overloop
+    - input_number.bright_overloop
+
+Alarm Status:
+  control: hidden
+  entities:
+   - input_boolean.alarm_triggered
+   - input_boolean.somebody_home
+   - input_boolean.block_alarm_siren
+   - input_boolean.block_flash_light
+   - input_boolean.front_door_announcement
+
+Camera_switches:
+  entities:
+    - switch.camera_poezenkamer
+    - switch.camera_woonkamer
+
+Locatie:
+   - sensor.daniel_to_home
+   - sensor.daniel_to_work
+#   - camera.locatie_daniel
+   - sensor.judith_to_home
+   - sensor.judith_to_work
+#   - camera.locatie_judith
+Familie:
+   - device_tracker.iphonedaniel
+   - device_tracker.iphone7dvd
+   - device_tracker.iphonevanjudith
+   - device_tracker.iphone_van_judith
+   - device_tracker.iphonevnjedidja
+   - device_tracker.android_jonathan
+
+Xiaomi light:
+   - light.gateway_light_34ce008d4d88
+
+
+Buiten:
+  entities:
+    - switch.buitenlamp_schuur
+
+Media:
+    - switch.tv
+
+
+
+Speedtest:
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
+Camera:
+    - camera.voordeur
+    - camera.woonkamer
+    - camera.poezenkamer
+
+HP server:
+  entities:
+    - sensor.hp_ilo_cpu_fanspeed
+    - sensor.hp_ilo_inlet_temperature
+    - sensor.hp_ilo_cpu_temperature
+
+Slaapkamer:
+  entities:
+    - group.slaapkamer_plafond
+    - input_number.bright_slaapkamer
+Slaapkamer_plafond:
+  entities:
+    - light.slaapkamer1
+    - light.slaapkamer2
+
+Deuren en Ramen:
+  control: hidden
+  entities:
+    - binary_sensor.door_window_sensor_158d0001ab3fb8
+    - binary_sensor.door_window_sensor_158d0001dbcd47
+    - binary_sensor.door_window_sensor_158d0001e44e61
+    - binary_sensor.door_window_sensor_158d0001e4548d
+    - binary_sensor.door_window_sensor_158d0001dacff3
+
+Klimaat:
+  entities:
+#    - sensor.tuin_temperature
+#    - sensor.tuin_humidity
+    - sensor.pws_temp_c
+    - sensor.pws_weather
+    - sensor.badkamer_temperature
+    - sensor.badkamer_humidity
+
+
+Buienradar:
+    - camera.buienradar
+
+Weer vooruitzicht:
+    - sensor.pws_weather_1d_metric
+    - sensor.pws_weather_1n_metric
+    - sensor.pws_weather_2d_metric
+    - sensor.pws_weather_2n_metric
+    - sensor.pws_weather_3d_metric
+    - sensor.pws_weather_3n_metric
+    - sensor.pws_weather_4d_metric
+    - sensor.pws_weather_4n_metric
+
+
+Scenes:
+  control: hidden
+  entities:
+    - input_boolean.bedtijd
+    - input_boolean.slapen
+    - input_boolean.block_deurbel
+    - scene.normal
+    - scene.relax
+    - scene.koken
+    - scene.eten
+    - scene.bedtijd
+    - scene.slapen

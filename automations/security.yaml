@@ -1,0 +1,163 @@
+
+#########################################################
+## Alarm warning
+#########################################################
+
+
+- alias: '[Alarm] Warning'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    to: 'warning'
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomimac1
+        ringtone_id: 10002
+        ringtone_vol: 50
+    - service: notify.telegram
+      data:
+        message: 'Alarm warning; Voordeur geopend'
+    - service: notify.telegram
+      data:
+        message: 'Alarm Warning, Voordeur geopend'
+        data:
+          photo:
+            - url: http://192.168.0.18/axis-cgi/jpg/image.cgi?resolution=320x240
+              caption: Voordeur geopend
+
+#########################################################
+## Alarm triggered
+#########################################################
+
+- alias: '[Alarm] Triggered'
+  trigger:
+  - platform: state
+    entity_id: alarm_control_panel.house
+    to: 'triggered'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.alarm
+    - service: script.turn_on
+      entity_id:
+        - script.start_alarm_siren
+        - script.start_flashing_color_light
+    - service: notify.telegram
+      data:
+        message: 'Alarm Triggered
+
+        Status Dakterras {{ states("binary_sensor.door_window_sensor_158d0001dacff3") }}
+
+        Status Keukenraam {{ states("binary_sensor.door_window_sensor_158d0001e4548d") }}
+
+        Status Tuindeuren deuren {{ states("binary_sensor.door_window_sensor_158d0001dbcd47") }}
+
+        Status Tuindeur {{ states("binary_sensor.door_window_sensor_158d0001e44e61") }}
+
+        Status Voordeur {{ states("binary_sensor.door_window_sensor_158d0001ab3fb8") }}'
+    - service: notify.telegram
+      data:
+        message: 'Alarm'
+        data:
+          photo:
+            - url: http://192.168.0.18/axis-cgi/jpg/image.cgi?resolution=320x240
+              caption: Voordeur
+
+
+#########################################################
+## Alarm disarmed
+#########################################################
+
+- alias: '[Alarm] disarmed'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.house
+      to: 'disarmed'
+  action:
+    - service: xiaomi_aqara.stop_ringtone
+      data:
+        gw_mac: !secret xiaomimac1
+    - service: script.turn_on
+      entity_id:
+        - script.stop_alarm_siren
+        - script.stop_flashing_color_light
+    - service: switch.turn_off
+      entity_id:
+        - switch.camera_woonkamer
+        - switch.camera_poezenkamer
+    - service: notify.telegram
+      data:
+        message: 'Status Alarm
+
+        Status of Alarm is  {{ states("alarm_control_panel.house") }}'
+#########################################################
+## Alarm pending
+#########################################################
+
+
+- alias: '[Alarm] pending'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.house
+      to: 'pending'
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomimac1
+        ringtone_id: 10002
+        ringtone_vol: 50
+
+
+#########################################################
+## Alarm armed away
+#########################################################
+
+- alias: '[Alarm] armed'
+  trigger:
+    - platform: state
+      entity_id: alarm_control_panel.house
+      to: 'armed_away'
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.camera_woonkamer
+        - switch.camera_poezenkamer
+    - service: notify.telegram
+      data:
+        message: 'Status of Alarm is Armed'
+#########################################################
+## Front door announcements
+#########################################################
+- alias: 'Front door open announcement'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001ab3fb8
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.front_door_announcement
+      state: 'on'
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomimac1
+        ringtone_id: 10005
+        ringtone_vol: 10
+
+
+- alias: 'Front door closed announcement'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.door_window_sensor_158d0001ab3fb8
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.front_door_announcement
+      state: 'on'
+  action:
+    - service: xiaomi_aqara.play_ringtone
+      data:
+        gw_mac: !secret xiaomimac1
+        ringtone_id: 10006
+        ringtone_vol: 10
+##
