@@ -1,0 +1,215 @@
+
+start_flashing_color_light:
+  alias:                     "Start color light flashing"
+  sequence:
+    - condition:             state
+      entity_id:             input_boolean.block_flash_light
+      state:                 'off'
+    - service:               light.turn_on
+      entity_id:             light.gateway_light_34ce008d4d88
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+    - delay:
+        milliseconds:        100
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - condition:             state
+      entity_id:             input_boolean.block_flash_light
+      state:                 'off'
+    - service:               light.turn_on
+      entity_id:             light.gateway_light_34ce008d4d88
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+    - delay:
+        milliseconds:        100
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - condition:             state
+      entity_id:             input_boolean.block_flash_light
+      state:                 'off'
+    - service:               light.turn_on
+      entity_id:             light.gateway_light_34ce008d4d88
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+    - delay:
+        milliseconds:        100
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - condition:             state
+      entity_id:             input_boolean.block_flash_light
+      state:                 'off'
+    - service:               light.turn_on
+      entity_id:             light.gateway_light_34ce008d4d88
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+    - delay:
+        milliseconds:        100
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - condition:             state
+      entity_id:             input_boolean.block_flash_light
+      state:                 'off'
+    - service:               light.turn_on
+      entity_id:             light.gateway_light_34ce008d4d88
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+    - delay:
+        milliseconds:        100
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - condition:             state
+      entity_id:             input_boolean.block_flash_light
+      state:                 'off'
+    - service:               light.turn_on
+      entity_id:             light.gateway_light_34ce008d4d88
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+    - delay:
+        milliseconds:        100
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - condition:             state
+      entity_id:             input_boolean.block_flash_light
+      state:                 'off'
+    - service:               light.turn_on
+      entity_id:             light.gateway_light_34ce008d4d88
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+    - delay:
+        milliseconds:        100
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - condition:             state
+      entity_id:             input_boolean.block_flash_light
+      state:                 'off'
+    - service:               light.turn_on
+      entity_id:             light.gateway_light_34ce008d4d88
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+    - delay:
+        milliseconds:        100
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - service:               script.repeat_flashing_color_light
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+repeat_flashing_color_light:
+  alias:                     "Repeat color light flashing"
+  sequence:
+    - delay:
+        milliseconds:        100
+    - service:               script.start_flashing_color_light
+      data_template:
+        color_name:          >
+          {% if color_name %}
+            {{color_name}}
+          {% else %}
+            red
+          {% endif %}
+stop_flashing_color_light:
+  alias:                     "Stop color light flashing"
+  sequence:
+    - service:               input_boolean.turn_on
+      entity_id:             input_boolean.block_flash_light
+    - service:               script.turn_off
+      entity_id:             script.start_flashing_color_light
+    - service:               script.turn_off
+      entity_id:             script.repeat_flashing_color_light
+    - service:               light.turn_off
+      entity_id:             light.gateway_light_34ce008d4d88
+    - delay:
+        # supports seconds, milliseconds, minutes, hours
+        seconds:             100
+    - service:               input_boolean.turn_off
+      entity_id:             input_boolean.block_flash_light
+
+
+start_alarm_siren:
+  alias:                     "Start alarm siren"
+  sequence:
+    - condition:             state
+      entity_id:             input_boolean.block_alarm_siren
+      state:                 'off'
+    - service:               xiaomi_aqara.play_ringtone
+      data:
+        ringtone_id:         2
+        ringtone_vol:        1
+        gw_mac:              !secret xiaomimac1
+    - delay:
+        seconds:             5
+    - service:               script.turn_on
+      data:
+        entity_id:           script.repeat_alarm_siren
+repeat_alarm_siren:
+  alias:                     "Repeat alarm siren"
+  sequence:
+    - delay:
+        # supports seconds, milliseconds, minutes, hours
+        milliseconds:        250
+    - service:               script.turn_on
+      data:
+        entity_id:           script.start_alarm_siren
+stop_alarm_siren:
+  alias:                     "Stop alarm siren"
+  sequence:
+    - service:               input_boolean.turn_on
+      entity_id:             input_boolean.block_alarm_siren
+    - service:               script.turn_off
+      data:
+        entity_id:           script.start_alarm_siren
+    - service:               script.turn_off
+      data:
+        entity_id:           script.repeat_alarm_siren
+    - delay:
+        # supports seconds, milliseconds, minutes, hours
+        seconds:             60
+    - service:               input_boolean.turn_off
+      entity_id:             input_boolean.block_alarm_siren
+###################################
+### END FLASHING CHRISTMAS TREE ###
+###################################

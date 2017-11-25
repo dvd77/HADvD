@@ -1,0 +1,11 @@
+- alias: Test
+  trigger:
+    - platform: state
+      entity_id: input_boolean.test
+      to: 'on'
+  action:
+    service: xiaomi_aqara.play_ringtone
+    data:
+      gw_mac: !secret xiaomimac1
+      ringtone_id: 10005
+      ringtone_vol: 3

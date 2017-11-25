@@ -1,0 +1,37 @@
+#################################################################
+## Bedtijd Automations
+#################################################################
+
+
+- alias: Bedtijd
+
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtijd
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 1
+        seconds: 30
+
+  action:
+    - service: scene.turn_on
+      entity_id: scene.bedtijd
+    - service: scene.turn_on
+      entity_id: scene.toon_slapen
+    - service: homeassistant.turn_off
+      entity_id:
+        - input_boolean.bedtijd
+    - service: homeassistant.turn_on
+      entity_id:
+        - input_boolean.slapen
+
+- alias: Slapen uit
+
+  trigger:
+    - platform: time
+      at: 06:30
+
+  action:
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.slapen

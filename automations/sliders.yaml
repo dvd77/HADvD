@@ -1,0 +1,71 @@
+
+- alias: Dimmer Afzuigkap
+  trigger:
+    - platform: state
+      entity_id: input_number.bright_afzuigkap
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.afzuigkap
+        brightness: '{{ states.input_number.bright_afzuigkap.state | int }}'
+- alias: Dimmer Plafond Keuken
+  trigger:
+    - platform: state
+      entity_id: input_number.bright_plafond_keuken
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.keuken
+        brightness: '{{ states.input_number.bright_plafond_keuken.state | int }}'
+
+- alias: Dimmers Eettafel
+  trigger:
+    - platform: state
+      entity_id: input_number.bright_eettafel
+    - platform: state
+      entity_id: input_number.temp_eettafel
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.eettafel
+        brightness: '{{ states.input_number.bright_eettafel.state | int }}'
+    - service: light.turn_on
+      data_template:
+        entity_id: light.eettafel
+        color_temp: '{{ states.input_number.temp_eettafel.state | int }}'
+
+- alias: Dimmer Overloop
+  trigger:
+    - platform: state
+      entity_id: input_number.bright_overloop
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.overloop
+        brightness: '{{ states.input_number.bright_overloop.state | int }}'
+
+- alias: Dimmer Slaapkamer
+  trigger:
+    - platform: state
+      entity_id: input_number.bright_slaapkamer
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: light.slaapkamer
+        brightness: '{{ states.input_number.bright_slaapkamer.state | int }}'
+
+- alias: Dimmers Woonkamer
+  trigger:
+    - platform: state
+      entity_id: input_number.bright_woonkamer
+    - platform: state
+      entity_id: input_number.temp_woonkamer
+  action:
+    - service: light.turn_on
+      data_template:
+        entity_id: group.woonkamer
+        brightness: '{{ states.input_number.bright_woonkamer.state | int }}'
+    - service: light.turn_on
+      data_template:
+        entity_id: group.woonkamer
+        color_temp: '{{ states.input_number.temp_woonkamer.state | int }}'

@@ -1,0 +1,163 @@
+#  - name: 'Toon Comfort'
+#    entities:
+#      climate.toon_van_eneco:
+#        operation_mode: performance
+
+#  - name: 'Toon Thuis'
+#    entities:
+#      climate.toon_van_eneco:
+#        operation_mode: heat
+
+#  - name: 'Toon Slapen'
+#    entities:
+#      climate.toon_van_eneco:
+#        operation_mode: cool
+
+#  - name: 'Toon Weg'
+#    entities:
+#      climate.toon_van_eneco:
+#        operation_mode: eco
+
+  - name: Alarm
+    entities:
+      input_boolean.alarm_triggered:
+        state: on
+      group.woonkamer:
+        state: on
+        brightness: 254
+        color_temp: 250
+      light.eettafel:
+        state: on
+        brightness: 254
+        color_temp: 250
+      light.afzuigkap:
+        state: on
+        brightness: 254
+      group.plafond_keuken:
+        state: on
+        brightness: 254
+      light.overloop:
+        state: on
+        brightness: 254
+      switch.gang_lamp:
+        state: on
+
+  - name: Alarm night
+    entities:
+      input_boolean.alarm_triggered:
+        state: on
+      group.woonkamer:
+        state: on
+        brightness: 254
+        color_temp: 250
+      light.eettafel:
+        state: on
+        brightness: 254
+        color_temp: 250
+      light.slaapkamer:
+        state: on
+        brightness: 254
+      group.afzuigkap:
+        state: on
+        brightness: 254
+      group.plafond_keuken:
+        state: on
+        brightness: 254
+      light.overloop:
+        state: on
+        brightness: 254
+      switch.gang_lamp:
+        state: on
+
+
+  - name: Normal
+    entities:
+      group.woonkamer:
+        state: on
+        brightness: 144
+        color_temp: 420
+      light.slaapkamer:
+        state: off
+      light.afzuigkap:
+        state: on
+        brightness: 144
+      group.plafond_keuken:
+        state: off
+      light.overloop:
+        state: on
+        brightness: 144
+      switch.gang_lamp:
+        state: on
+      light.eettafel:
+        state: off
+
+  - name: Relax
+    entities:
+      group.woonkamer:
+        state: on
+        brightness: 58
+        color_temp: 430
+      light.afzuigkap:
+        state: off
+      group.plafond_keuken:
+        state: off
+      switch.spots:
+        state: off
+      light.eettafel:
+        state: off
+      switch.ventilatie_stand_3:
+        state: off
+
+
+  - name: Eten
+    entities:
+      light.eettafel:
+        state: on
+        brightness: 144
+        color_temp: 420
+
+  - name: Koken
+    entities:
+      group.afzuigkap:
+        state: on
+        brightness: 144
+      group.plafond_keuken:
+        state: on
+        brightness: 144
+      switch.ventilatie_stand_3:
+        state: on
+
+
+  - name: Bedtijd
+    entities:
+      group.woonkamer:
+        state: off
+      light.eettafel:
+        state: off
+      group.slaapkamer_plafond:
+        state: on
+        brightness: 80
+      light.afzuigkap:
+        state: off
+      group.plafond_keuken:
+        state: off
+      switch.tv:
+        state: off
+      switch.spots:
+        state: off
+      light.overloop:
+        state: on
+        brightness: 144
+      switch.gang_lamp:
+        state: off
+
+  - name: Slapen
+    entities:
+      group.slaapkamer_plafond:
+        state: off
+      switch.ventilatie_stand_3:
+        state: off
+      switch.ventilatie_stand_1:
+        state: off
+      light.overloop:
+        state: off

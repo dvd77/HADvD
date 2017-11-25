@@ -1,0 +1,40 @@
+- alias: 'Ventilation daytime'
+
+  trigger:
+    - platform: state
+      entity_id: group.familie
+      from: 'home'
+      to: 'not_home'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        - switch.ventilatie_stand_1
+
+
+- alias: 'Ventilation while taking shower '
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.humidity_158d00019d34bb
+      above: 76
+  condition:
+    - condition: state
+      entity_id: input_boolean.slapen
+      state: 'off'
+
+  action:
+    - service: switch.turn_on
+      entity_id:
+        switch.ventilatie_stand_3
+
+- alias: 'Ventilation Max off'
+
+  trigger:
+    - platform: numeric_state
+      entity_id: sensor.humidity_158d00019d34bb
+      below: 74
+  action:
+    - service: switch.turn_off
+      entity_id:
+        switch.ventilatie_stand_3

@@ -1,0 +1,10 @@
+- platform: threshold
+  name: 'Low LUX'
+  threshold: 260
+  type: lower
+  entity_id: sensor.illumination_34ce008d4d88
+- platform: threshold
+  name: 'High LUX'
+  threshold: 370 
+  type: upper
+  entity_id: sensor.illumination_34ce008d4d88

@@ -1,0 +1,63 @@
+- platform: hp_ilo
+  host: 192.168.0.5
+  username: !secret ilo_username
+  password: !secret ilo_password
+  monitored_variables:
+    - name: CPU fanspeed
+      sensor_type: server_health
+      unit_of_measurement: '%'
+      value_template: '{{ ilo_data.fans["Fan 1"].speed[0] }}'
+    - name: Inlet temperature
+      sensor_type: server_health
+      unit_of_measurement: 'C'
+      value_template: '{{ ilo_data.temperature["01-Inlet Ambient"].currentreading[0] }}'
+    - name: CPU temperature
+      sensor_type: server_health
+      unit_of_measurement:  'C'
+      value_template: '{{ ilo_data.temperature["02-CPU"].currentreading[0] }}'
+
+
+- platform: speedtest
+  minute:
+    - 10
+    - 20
+    - 30
+    - 40
+    - 50
+  server_id: 1208
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+
+- platform: google_travel_time
+  name: Daniel to home
+  api_key: !secret google_maps_key
+  origin: device_tracker.iphonedaniel
+  destination: zone.home
+- platform: google_travel_time
+  name: Judith to home
+  api_key: !secret google_maps_key
+  origin: device_tracker.iphone_van_judith
+  destination: zone.home
+- platform: google_travel_time
+  name: Daniel to Work
+  api_key: !secret google_maps_key
+  origin: device_tracker.iphonedaniel
+  destination: "Van Heuven Goedhartlaan 1, Amstelveen"
+- platform: google_travel_time
+  name: Judith to work
+  api_key: !secret google_maps_key
+  origin: device_tracker.iphone_van_judith
+  destination: "Parklaan 1, Hoofddorp"
+
+
+
+- platform: wunderground
+  api_key: !secret wu_key
+  lang: NL
+  monitored_conditions:
+    - alerts
+    - feelslike_c
+    - temp_c
+    - weather

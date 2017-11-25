@@ -1,0 +1,16 @@
+###################################################
+## Switch on TV while @home
+###################################################
+
+- alias: TV on
+  trigger:
+    - platform: time
+      at: '07:00:00'
+  condition:
+    - condition: state
+      entity_id: group.familie
+      state: 'home'
+
+  action:
+   service: switch.turn_on
+   entity_id: switch.tv

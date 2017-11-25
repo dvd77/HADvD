@@ -1,0 +1,23 @@
+
+- cal_id: !secret cal_id
+  entities:
+  - device_id: vcgrijs
+    name: Vuilcontainer grijs
+    track: true
+    search: "#grijs"
+  - device_id: vcgroen
+    name: Vuilcontainer groen
+    track: true
+    search: "#groen"
+
+- cal_id: '#contacts@group.v.calendar.google.com'
+  entities:
+  - device_id: contacts
+    name: Contacts
+    track: true
+
+- cal_id: nl.dutch#holiday@group.v.calendar.google.com
+  entities:
+  - device_id: feestdagen_in_nederland
+    name: Feestdagen in Nederland
+    track: true

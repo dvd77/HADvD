@@ -1,0 +1,48 @@
+bright_woonkamer:
+  name: Dimmer WK
+  initial: 120
+  min: 1
+  max: 254
+  step: 1
+temp_woonkamer:
+  name: Kleur WK
+  initial: 420
+  min: 250
+  max: 454
+  step: 10
+bright_eettafel:
+  name: Dimmer eettafel
+  initial: 140
+  min: 1
+  max: 254
+  step: 1
+temp_eettafel:
+  name: Kleur eettafel
+  initial: 420
+  min: 250
+  max: 454
+  step: 10
+bright_overloop:
+  name: Dimmer overloop
+  initial: 80
+  min: 1
+  max: 254
+  step: 1
+bright_afzuigkap:
+  name: Dimmer afzuigkap
+  initial: 80
+  min: 1
+  max: 254
+  step: 1
+bright_plafond_keuken:
+  name: Dimmer Plafond Keuken
+  initial: 80
+  min: 1
+  max: 254
+  step: 1
+bright_slaapkamer:
+  name: Dimmer Slaapkamer
+  initial: 80
+  min: 1
+  max: 254
+  step: 1

@@ -1,0 +1,127 @@
+#- platform: rfxtrx
+#  automatic_add: True
+#  devices:
+#Stopcontacten
+#    0913000148cd0d012970:
+#      name: Buitenlamp Schuur
+#    0913000848cd0a012670:
+#      name: Gang lamp
+#KAKU 3 chn switch
+#    0b11000398bc0cfe02010f70:
+#      name: Ventilatie stand 1
+#    0b11000578bc0cfe03010f70:
+#      name: Ventilatie stand 2
+#    0b11000336bc0cfe00010f70:
+#      name: Ventilatie stand 3
+#KAKU
+#    "0710010141030170":
+#      name: A3
+#   -  "0710010144020170":
+#        name: D3
+#IMPULS
+#    "0710050150080170":
+#      name: P08
+#    "0710050150070170":
+#      name: Camera Poezenkamer
+#   - "0710050150060170":
+#        name: p06
+#   -  "0710050150050170":
+#        name: p05
+#- platform: mqtt
+#  name: DB
+#  state_topic: "/ESP_EasyDB/led/state"
+#  command_topic: "/ESP_EasyDB/GPIO/2"
+#  payload_on: "0"
+#  payload_off: "1"
+#  qos: 1
+#  retain: true
+- platform: mqtt
+  name: "TV"
+  command_topic: "cmnd/sw1/power"
+  state_topic: "stat/sw1/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+- platform: mqtt
+  name: "Camera Woonkamer"
+  command_topic: "cmnd/sw2/power"
+  state_topic: "stat/sw2/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "Buitenlamp Schuur"
+  command_topic: "cmnd/sw3/power"
+  state_topic: "stat/sw3/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "Spots"
+  command_topic: "cmnd/sw4/power"
+  state_topic: "stat/sw4/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "Camera Poezenkamer"
+  command_topic: "cmnd/sw5/power"
+  state_topic: "stat/sw5/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "sw6"
+  command_topic: "cmnd/sw6/power"
+  state_topic: "stat/sw6/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+
+- platform: mqtt
+  name: "sw7"
+  command_topic: "cmnd/sw7/power"
+  state_topic: "stat/sw7/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "Ventilatie stand 3"
+  command_topic: "cmnd/sw8/power1"
+  state_topic: "stat/sw8/POWER1"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+
+- platform: mqtt
+  name: "Ventilatie stand 1"
+  command_topic: "cmnd/sw8/power2"
+  state_topic: "stat/sw8/POWER2"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true
+
+- platform: mqtt
+  name: "gang_lamp"
+  command_topic: "cmnd/sw9/power"
+  state_topic: "stat/sw9/POWER"
+  qos: 1
+  payload_on: "ON"
+  payload_off: "OFF"
+  retain: true

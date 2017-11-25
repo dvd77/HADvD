@@ -1,0 +1,155 @@
+
+#Sensors
+climate.toon_van_eneco:
+    friendly_name: Temperatuur Toon
+    icon: mdi:temperature-celsius
+sensor.power_current:
+  friendly_name: Huidige stroom
+sensor.power_today:
+  friendly_name: Totaal stroom vandaag
+sensor.gas_current:
+  friendly_name: Huidg gas
+sensor.gas_today:
+  friendly_name: Totaal gas vandaag
+sensor.tuin_humidity:
+  icon: mdi:water-percent
+sensor.badkamer_humidity:
+  icon: mdi:water-percent
+sensor.hp_ilo_cpu_fanspeed:
+  icon: mdi:fan
+sensor.hp_ilo_cpu_temperature:
+  icon: mdi:thermometer
+sensor.hp_ilo_inlet_temperature:
+  icon: mdi:thermometer-lines
+sensor.humidity_158d00019d34bb:
+  friendly_name: Badkamer vochtigheid
+sensor.temperature_158d00019d34bb:
+  friendly_name: Badkamer temperatuur
+
+binary_sensor.door_window_sensor_158d0001ab3fb8:
+  friendly_name: Voordeur
+binary_sensor.door_window_sensor_158d0001dbcd47:
+  friendly_name: Tuindeuren
+binary_sensor.door_window_sensor_158d0001e44e61:
+  friendly_name: Tuindeur
+binary_sensor.door_window_sensor_158d0001e4548d:
+  friendly_name: Keukenraam
+binary_sensor.door_window_sensor_158d0001dacff3:
+  friendly_name: Dakterras
+
+
+
+######################################
+#Groups
+group.all_switches:
+  friendly_name: All switches
+  hidden: false
+group.all_lights:
+  friendly_name: All lights
+  hidden: false
+group.sensors:
+  friendly_name: All Sensors
+  hidden: false
+group.all_automations:
+  hidden: false
+group.all_devices:
+  hidden: false
+group.camera_switches:
+  friendly_name: Camera switches
+group.all_scripts:
+  hidden: false
+group.slaapkamer_plafond:
+  icon: mdi:hotel
+###################################
+#order main page
+group.camera_voordeur:
+  order: 1
+group.media:
+  order: 2
+group.woonkamer:
+  order: 3
+group.keuken:
+  order: 4
+group.scenes:
+  order: 5
+group.eettafel:
+  order: 6
+group.buiten:
+  order: 7
+group.toon:
+  order: 8
+group.speedtest:
+  order: 9
+##################################
+#Scenes
+scene.toon_slapen:
+  icon: mdi:sleep
+scene.toon_thuis:
+  icon: mdi:home
+scene.toon_comfort:
+  icon: mdi:home-circle
+scene.toon_weg:
+  icon: mdi:exit-to-app
+#####################################
+#Lights
+light.slaapkamer:
+  assumed_state: false
+  icon: mdi:hotel
+light.eettafel:
+  assumed_state: false
+light.gateway_light_34ce008d4d88:
+  friendly_name: Xiaomi light
+
+#####################################
+#Switch
+
+switch.tv:
+  assumed_state: false
+  icon: mdi:television
+  homebridge_name: TV
+  homebridge_visible: true
+switch.spots:
+  assumed_state: false
+  icon: mdi:stove
+switch.buitenlamp_schuur:
+  assumed_state: false
+  icon: mdi:lightbulb
+switch.camera_poezenkamer:
+  icon: mdi:camcorder
+  assumed_state: false
+switch.camera_woonkamer:
+  icon: mdi:camcorder
+  assumed_state: false
+switch.gang_lamp:
+  assumed_state: false
+  icon: mdi:lightbulb
+switch.ventilatie_stand_1:
+  assumed_state: false
+  icon: mdi:fan
+#switch.ventilatie_stand_2:
+#  assumed_state: false
+#  icon: mdi:fan
+switch.ventilatie_stand_3:
+  assumed_state: false
+  icon: mdi:fan
+
+#######################################
+# input_boolean
+
+input_boolean.bedtijd:
+  homebridge_name: Bedtijd
+  homebridge_visible: true
+
+
+scene.normal:
+  homebridge_visible: true
+  homebridge_name: Verlichting Normaal
+scene.koken:
+  homebridge_visible: true
+  homebridge_name: koken
+scene.relax:
+  homebridge_visible: true
+  homebridge_name: Relax
+scene.eten:
+  homebridge_visible: true
+  homebridge_name: Eten

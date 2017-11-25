@@ -1,0 +1,316 @@
+### Input boolean to mute gateway sound ###
+input_boolean:
+  mute_gateway_sounds:
+    name: Mute
+    icon: mdi:volume-off
+### Scripts to play gateway sounds ###
+script:
+  play_sel_sound:
+    alias: "Loop Play Sound"
+    sequence:
+      - condition: state
+        entity_id: input_boolean.mute_gateway_sounds
+        state: 'off'
+      - service: xiaomi_aqara.play_ringtone
+        data_template:
+          gw_mac: !secret xiaomimac1
+          ringtone_id: "{{ states.input_select.gateway_sound.state.split('-')[0] }}"
+          ringtone_vol: "{{ states.input_number.gateway_volume.state|int }}"
+      - delay: '00:00:{{ states.input_number.loop_delay.state | int }}'
+      - service: script.play_sel_sound_loop
+
+  play_sel_sound_loop:
+    alias: "Play selected sound in Loop"
+    sequence:
+      - condition: state
+        entity_id: input_boolean.mute_gateway_sounds
+        state: 'off'
+      - delay: '00:00:{{ states.input_number.loop_delay.state | int }}'
+      - service: script.play_sel_sound
+
+  play_sel_sound_single:
+    alias: "Single Play Sound"
+    sequence:
+      - condition: state
+        entity_id: input_boolean.mute_gateway_sounds
+        state: 'off'
+      - service: xiaomi_aqara.play_ringtone
+        data_template:
+          gw_mac: !secret xiaomimac1
+          ringtone_id: "{{ states.input_select.gateway_sound.state.split('-')[0] }}"
+          ringtone_vol: "{{ states.input_number.gateway_volume.state|int }}"
+
+  start_flashing_color_light:
+    alias:                     "Start color light flashing"
+    sequence:
+      - condition:             state
+        entity_id:             input_boolean.block_flash_light
+        state:                 'off'
+      - service:               light.turn_on
+        entity_id:             light.gateway_light_34ce008d4d88
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+      - delay:
+          milliseconds:        100
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - condition:             state
+        entity_id:             input_boolean.block_flash_light
+        state:                 'off'
+      - service:               light.turn_on
+        entity_id:             light.gateway_light_34ce008d4d88
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+      - delay:
+          milliseconds:        100
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - condition:             state
+        entity_id:             input_boolean.block_flash_light
+        state:                 'off'
+      - service:               light.turn_on
+        entity_id:             light.gateway_light_34ce008d4d88
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+      - delay:
+          milliseconds:        100
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - condition:             state
+        entity_id:             input_boolean.block_flash_light
+        state:                 'off'
+      - service:               light.turn_on
+        entity_id:             light.gateway_light_34ce008d4d88
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+      - delay:
+          milliseconds:        100
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - condition:             state
+        entity_id:             input_boolean.block_flash_light
+        state:                 'off'
+      - service:               light.turn_on
+        entity_id:             light.gateway_light_34ce008d4d88
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+      - delay:
+          milliseconds:        100
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - condition:             state
+        entity_id:             input_boolean.block_flash_light
+        state:                 'off'
+      - service:               light.turn_on
+        entity_id:             light.gateway_light_34ce008d4d88
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+      - delay:
+          milliseconds:        100
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - condition:             state
+        entity_id:             input_boolean.block_flash_light
+        state:                 'off'
+      - service:               light.turn_on
+        entity_id:             light.gateway_light_34ce008d4d88
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+      - delay:
+          milliseconds:        100
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - condition:             state
+        entity_id:             input_boolean.block_flash_light
+        state:                 'off'
+      - service:               light.turn_on
+        entity_id:             light.gateway_light_34ce008d4d88
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+      - delay:
+          milliseconds:        100
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - service:               script.repeat_flashing_color_light
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+  repeat_flashing_color_light:
+    alias:                     "Repeat color light flashing"
+    sequence:
+      - delay:
+          milliseconds:        100
+      - service:               script.start_flashing_color_light
+        data_template:
+          color_name:          >
+            {% if color_name %}
+              {{color_name}}
+            {% else %}
+              red
+            {% endif %}
+  stop_flashing_color_light:
+    alias:                     "Stop color light flashing"
+    sequence:
+      - service:               input_boolean.turn_on
+        entity_id:             input_boolean.block_flash_light
+      - service:               script.turn_off
+        entity_id:             script.start_flashing_color_light
+      - service:               script.turn_off
+        entity_id:             script.repeat_flashing_color_light
+      - service:               light.turn_off
+        entity_id:             light.gateway_light_34ce008d4d88
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          seconds:             100
+      - service:               input_boolean.turn_off
+        entity_id:             input_boolean.block_flash_light
+
+
+  start_alarm_siren:
+    alias:                     "Start alarm siren"
+    sequence:
+      - condition:             state
+        entity_id:             input_boolean.block_alarm_siren
+        state:                 'off'
+      - service:               xiaomi_aqara.play_ringtone
+        data:
+          ringtone_id:         2
+          ringtone_vol:        1
+          gw_mac:              !secret xiaomimac1
+      - delay:
+          seconds:             5
+      - service:               script.turn_on
+        data:
+          entity_id:           script.repeat_alarm_siren
+  repeat_alarm_siren:
+    alias:                     "Repeat alarm siren"
+    sequence:
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          milliseconds:        250
+      - service:               script.turn_on
+        data:
+          entity_id:           script.start_alarm_siren
+  stop_alarm_siren:
+    alias:                     "Stop alarm siren"
+    sequence:
+      - service:               input_boolean.turn_on
+        entity_id:             input_boolean.block_alarm_siren
+      - service:               script.turn_off
+        data:
+          entity_id:           script.start_alarm_siren
+      - service:               script.turn_off
+        data:
+          entity_id:           script.repeat_alarm_siren
+      - delay:
+          # supports seconds, milliseconds, minutes, hours
+          seconds:             60
+      - service:               input_boolean.turn_off
+        entity_id:             input_boolean.block_alarm_siren
+
+
+### Input slider to control gateway volume ###
+input_number:
+  gateway_volume:
+    name: Volume
+    initial: 10
+    min: 0
+    max: 100
+    step: 2
+    icon: mdi:volume-high
+
+### Input slider to control loop delay ###
+  loop_delay:
+    name: "Loop Delay"
+    initial: 1
+    min: 0
+    max: 15
+    step: 1
+    icon: mdi:loop
+
+### Input select to select sound to play ###
+input_select:
+  gateway_sound:
+    name: Ringtone
+    options:
+      - "0 - Police car 1"
+      - "1 - Police car 2"
+      - "2 - Accident"
+      - "3 - Countdown"
+      - "4 - Ghost"
+      - "5 - Sniper rifle"
+      - "6 - Battle"
+      - "7 - Air raid"
+      - "8 - Bark"
+#      - "9 - None"
+      - "10 - Doorbell"
+      - "11 - Knock at a door"
+      - "12 - Amuse"
+      - "13 - Alarm clock"
+#      - "14 - None"
+#      - "15 - None"
+#      - "16 - None"
+#      - "17 - None"
+#      - "18 - None"
+#      - "19 - None"
+      - "20 - MiMix"
+      - "21 - Enthusiastic"
+      - "22 - GuitarClassic"
+      - "23 - IceWorldPiano"
+      - "24 - LeisureTime"
+      - "25 - ChildHood"
+      - "26 - MorningStreamLiet"
+      - "27 - MusicBox"
+      - "28 - Orange"
+      - "29 - Thinker"
+      - "10001 - empty"
+      - "10002 - Beep 2x"
+      - "10003 - empty2"
+      - "10004 - empty3"
+      - "10005 - Front door open"
+      - "10006 - Front door closed"
+    icon: mdi:music-note
