@@ -61,3 +61,9 @@
     - feelslike_c
     - temp_c
     - weather
+
+
+- platform: dsmr
+  host: 192.168.0.4
+  port: 2001
+  dsmr_version: 4

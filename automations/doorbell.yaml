@@ -20,8 +20,15 @@
         gw_mac: !secret xiaomimac1
         ringtone_id: 10
         ringtone_vol: 25
-#    - service: script.start_flashing_color_light
-#    - service: tts.google_say
-#      data:
-#        message: 'Er staat iemand voor de deur'
-#        language: 'nl'
+
+
+- alias: Turn on block doorbel when starting
+  trigger:
+  - platform: homeassistant
+    event: start
+  action:
+    - service: homeassistant.turn_on
+      entity_id: input_boolean.block_deurbel
+    - delay: '00:00:05'
+    - service: homeassistant.turn_off
+      entity_id: input_boolean.block_deurbel

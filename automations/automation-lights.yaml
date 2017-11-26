@@ -93,7 +93,7 @@
       entity_id:
         - group.woonkamer
         - light.overloop
-    - service: switch.turn_off
+    - service: switch.turn_on
       entity_id:
         - switch.gang_lamp
 
