@@ -25,6 +25,9 @@
       - condition: state
         entity_id: group.familie
         state: 'home'
+      - condition: state
+        entity_id: input_boolean.slapen
+        state: 'off'
   action:
     - service: light.turn_on
       entity_id:
@@ -87,6 +90,10 @@
       - condition: state
         entity_id: binary_sensor.low_lux
         state: 'on'
+      - condition: state
+        entity_id: input_boolean.slapen
+        state: 'off'
+
 
   action:
     - service: light.turn_on
