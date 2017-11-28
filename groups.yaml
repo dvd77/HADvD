@@ -103,6 +103,7 @@ Woonkamer:
     - light.wand_rechts
     - input_number.bright_woonkamer
     - input_number.temp_woonkamer
+    - switch.fireplace
 Eettafel:
   entities:
     - light.eettafel

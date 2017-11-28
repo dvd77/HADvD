@@ -80,7 +80,7 @@
   retain: true
 
 - platform: mqtt
-  name: "sw6"
+  name: "Fireplace"
   command_topic: "cmnd/sw6/power"
   state_topic: "stat/sw6/POWER"
   qos: 1

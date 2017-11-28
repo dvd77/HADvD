@@ -150,6 +150,8 @@
         brightness: 144
       switch.gang_lamp:
         state: off
+      switch.fireplace:
+        state: off
 
   - name: Slapen
     entities:

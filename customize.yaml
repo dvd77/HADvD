@@ -132,7 +132,9 @@ switch.ventilatie_stand_1:
 switch.ventilatie_stand_3:
   assumed_state: false
   icon: mdi:fan
-
+switch.fireplace:
+  assumed_state: false
+  icon: mdi:fire
 #######################################
 # input_boolean
 
