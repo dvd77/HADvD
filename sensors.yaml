@@ -63,6 +63,52 @@
     - weather
 
 
-- platform: dsmr
-  host: 192.168.0.4
-  dsmr_version: 4
+#- platform: dsmr
+#  host: 192.168.0.4
+#  dsmr_version: 4
+
+- platform: nest
+  monitored_conditions:
+    - 'weather_temperature'
+    - 'weather_humidity'
+    - 'weather_condition'
+    - 'wind_speed'
+    - 'wind_direction'
+
+- platform: template
+  sensors:
+    voordeur_battery:
+      friendly_name: "Voordeur Batterij"
+      value_template: "{{ states.binary_sensor.door_window_sensor_158d0001ab3fb8.attributes.battery_level }}"
+      unit_of_measurement: '%'
+      entity_id: binary_sensor.door_window_sensor_158d0001ab3fb8
+    tuindeuren_battery:
+      friendly_name: "Tuindeuren Batterij"
+      value_template: "{{ states.binary_sensor.door_window_sensor_158d0001dbcd47.attributes.battery_level }}"
+      unit_of_measurement: '%'
+      entity_id: binary_sensor.door_window_sensor_158d0001dbcd47
+    tuindeur_battery:
+      friendly_name: "Tuindeur Batterij"
+      value_template: "{{ states.binary_sensor.door_window_sensor_158d0001e44e61.attributes.battery_level }}"
+      unit_of_measurement: '%'
+      entity_id: binary_sensor.door_window_sensor_158d0001e44e61
+    keukenraam_battery:
+      friendly_name: "Keukenraam Batterij"
+      value_template: "{{ states.binary_sensor.door_window_sensor_158d0001e4548d.attributes.battery_level }}"
+      unit_of_measurement: '%'
+      entity_id: binary_sensor.door_window_sensor_158d0001e4548d
+    dakterras_battery:
+      friendly_name: "Dakterras Batterij"
+      value_template: "{{ states.binary_sensor.door_window_sensor_158d0001dacff3.attributes.battery_level }}"
+      unit_of_measurement: '%'
+      entity_id: binary_sensor.door_window_sensor_158d0001dacff3
+    badkamer_battery:
+      friendly_name: "Badkamer Batterij"
+      value_template: "{{ states.sensor.temperature_158d00019d34bb.attributes.battery_level }}"
+      unit_of_measurement: '%'
+      entity_id: sensor.temperature_158d00019d34bb
+    ikea_ab_battery:
+      friendly_name: "Ikea ab Batterij"
+      value_template: "{{ states.sensor.tradfri_remote_control.attributes.battery_level }}"
+      unit_of_measurement: '%'
+      entity_id: sensor.tradfri_remote_control

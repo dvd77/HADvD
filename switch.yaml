@@ -80,7 +80,7 @@
   retain: true
 
 - platform: mqtt
-  name: "Fireplace"
+  name: "Sierhaard"
   command_topic: "cmnd/sw6/power"
   state_topic: "stat/sw6/POWER"
   qos: 1
@@ -90,7 +90,7 @@
 
 
 - platform: mqtt
-  name: "sw7"
+  name: "Kerstboom"
   command_topic: "cmnd/sw7/power"
   state_topic: "stat/sw7/POWER"
   qos: 1

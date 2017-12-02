@@ -10,10 +10,9 @@ default_view:
    - group.camera_voordeur
    - group.woonkamer
    - group.eettafel
-   - group.media
    - group.keuken
+   - group.schakelaars
    - group.scenes
-#   - group.toon
    - group.buiten
    - group.timer_light
 Boven:
@@ -33,6 +32,8 @@ Utility:
    - sensor.humidity_158d00019d34bb
    - sensor.temperature_158d00019d34bb
    - group.xiaomi
+   - climate.living_room
+   - group.battery_level
 
 
 
@@ -76,6 +77,7 @@ System:
        - group.xiaomi_light
        - sensor.illumination_34ce008d4d88
 
+
 ###############################
 #Groups
 camera_voordeur:
@@ -103,7 +105,7 @@ Woonkamer:
     - light.wand_rechts
     - input_number.bright_woonkamer
     - input_number.temp_woonkamer
-    - switch.fireplace
+
 Eettafel:
   entities:
     - light.eettafel
@@ -174,8 +176,12 @@ Buiten:
   entities:
     - switch.buitenlamp_schuur
 
-Media:
+Schakelaars:
+  control: hidden
+  entities:
     - switch.tv
+    - switch.sierhaard
+    - switch.kerstboom
 
 
 
@@ -248,6 +254,7 @@ Scenes:
     - scene.eten
     - scene.bedtijd
     - scene.slapen
+    - scene.morning
 
 Xiaomi:
   control: hidden
@@ -266,3 +273,12 @@ Timer light:
     - sensor.auto_light_start
     - input_number.auto_light_offset_off
     - sensor.auto_light_stop
+Battery level:
+  entities:
+    - sensor.voordeur_battery
+    - sensor.tuindeuren_battery
+    - sensor.tuindeur_battery
+    - sensor.keukenraam_battery
+    - sensor.dakterras_battery
+    - sensor.badkamer_battery
+    - sensor.ikea_ab_battery

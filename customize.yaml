@@ -1,16 +1,7 @@
 
 #Sensors
-climate.toon_van_eneco:
-    friendly_name: Temperatuur Toon
-    icon: mdi:temperature-celsius
-sensor.power_current:
-  friendly_name: Huidige stroom
-sensor.power_today:
-  friendly_name: Totaal stroom vandaag
-sensor.gas_current:
-  friendly_name: Huidg gas
-sensor.gas_today:
-  friendly_name: Totaal gas vandaag
+
+
 sensor.tuin_humidity:
   icon: mdi:water-percent
 sensor.badkamer_humidity:
@@ -25,6 +16,20 @@ sensor.humidity_158d00019d34bb:
   friendly_name: Badkamer vochtigheid
 sensor.temperature_158d00019d34bb:
   friendly_name: Badkamer temperatuur
+sensor.voordeur_battery:
+  icon: mdi:battery
+sensor.tuindeuren_battery:
+  icon: mdi:battery
+sensor.tuindeur_battery:
+  icon: mdi:battery
+sensor.keukenraam_battery:
+  icon: mdi:battery
+sensor.dakterras_battery:
+  icon: mdi:battery
+sensor.badkamer_battery:
+  icon: mdi:battery
+sensor.ikea_ab_battery:
+  icon: mdi:battery
 
 binary_sensor.door_window_sensor_158d0001ab3fb8:
   friendly_name: Voordeur
@@ -82,23 +87,36 @@ group.speedtest:
   order: 9
 ##################################
 #Scenes
-scene.toon_slapen:
-  icon: mdi:sleep
-scene.toon_thuis:
-  icon: mdi:home
-scene.toon_comfort:
-  icon: mdi:home-circle
-scene.toon_weg:
-  icon: mdi:exit-to-app
+
 #####################################
 #Lights
 light.slaapkamer:
   assumed_state: false
   icon: mdi:hotel
+  emulated_hue_hidden: false
+  emulated_hue_name: Bedroom
 light.eettafel:
   assumed_state: false
 light.gateway_light_34ce008d4d88:
   friendly_name: Xiaomi light
+
+light.keuken:
+    emulated_hue_hidden: false
+    emulated_hue_name: Main Kitchen
+
+light.Woonkamer:
+    emulated_hue_hidden: false
+    emulated_hue_name: Living room
+
+light.eethoek:
+    emulated_hue_hidden: false
+    emulated_hue_name: Dining table
+
+light.afzuigkap:
+    emulated_hue_hidden: false
+    emulated_hue_name: extractor hood
+
+
 
 #####################################
 #Switch
@@ -108,9 +126,13 @@ switch.tv:
   icon: mdi:television
   homebridge_name: TV
   homebridge_visible: true
+  emulated_hue_hidden: false
+  emulated_hue_name: "TV"
 switch.spots:
   assumed_state: false
   icon: mdi:stove
+  emulated_hue_hidden: false
+  emulated_hue_name: Kitchen spotlights
 switch.buitenlamp_schuur:
   assumed_state: false
   icon: mdi:lightbulb
@@ -132,26 +154,46 @@ switch.ventilatie_stand_1:
 switch.ventilatie_stand_3:
   assumed_state: false
   icon: mdi:fan
-switch.fireplace:
+switch.Sierhaard:
   assumed_state: false
   icon: mdi:fire
+  emulated_hue_hidden: false
+  emulated_hue_name: Fireplace
+switch.kerstboom:
+  assumed_state: false
+  icon: mdi:pine-tree
+  emulated_hue_hidden: false
+  emulated_hue_name: Christmas tree
+
 #######################################
 # input_boolean
 
 input_boolean.bedtijd:
   homebridge_name: Bedtijd
   homebridge_visible: true
-
+  emulated_hue_hidden: false
+  emulated_hue_name: bedtime
 
 scene.normal:
   homebridge_visible: true
   homebridge_name: Verlichting Normaal
+  emulated_hue_hidden: false
+  emulated_hue_name: Normal
 scene.koken:
   homebridge_visible: true
   homebridge_name: koken
+  emulated_hue_hidden: false
+  emulated_hue_name: Cooking
 scene.relax:
   homebridge_visible: true
   homebridge_name: Relax
+  emulated_hue_hidden: false
+  emulated_hue_name: Relax
 scene.eten:
   homebridge_visible: true
   homebridge_name: Eten
+  emulated_hue_hidden: false
+  emulated_hue_name: Dinner time
+scene.morning:
+  emulated_hue_hidden: false
+  emulated_hue_name: Morning

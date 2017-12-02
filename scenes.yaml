@@ -98,7 +98,8 @@
         brightness: 58
         color_temp: 430
       light.afzuigkap:
-        state: off
+        state: on
+        brightness: 70
       group.plafond_keuken:
         state: off
       switch.spots:
@@ -107,6 +108,8 @@
         state: off
       switch.ventilatie_stand_3:
         state: off
+      switch.sierhaard:
+        state: on
 
 
   - name: Eten
@@ -150,7 +153,7 @@
         brightness: 144
       switch.gang_lamp:
         state: off
-      switch.fireplace:
+      switch.sfeerhaard:
         state: off
 
   - name: Slapen
@@ -163,3 +166,13 @@
         state: off
       light.overloop:
         state: off
+
+  - name: Morning
+    entities:
+      group.woonkamer:
+        state: on
+        brightness: 40
+        color_temp: 420
+      group.afzuigkap:
+        state: on
+        brightness: 70

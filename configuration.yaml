@@ -63,9 +63,7 @@ tts:
 #  username: !secret zoneminder_user
 #  password: !secret zoneminder_password
 
-#toon:
-#    username: !secret toon_username
-#    password: !secret toon_password
+
 
 apple_tv:
   - host: !secret appletv_host
@@ -76,6 +74,17 @@ media_player:
   - platform: spotify
     client_id: !secret spotify_clientid
     client_secret: !secret spotify_clientsecret
+emulated_hue:
+  type: alexa
+  host_ip: 192.168.0.12
+  listen_port: 8300
+  expose_by_default: false
+
+nest:
+  client_id: !secret nestclientid
+  client_secret: !secret nestsecret
+
+
 
 
 
@@ -116,7 +125,6 @@ xiaomi_aqara:
       key: !secret xiaomikey1
       host: !secret xiaomihost
 
-
 mqtt:
   client_id: home-assistant-1
   broker: localhost
@@ -146,11 +154,6 @@ device_tracker:
     username: !secret unifi_username
     password: !secret unifi_password
     verify_ssl: false
-
-#media_player:
-#  - platform: mpd
-#    host: !secret mpd_host
-#    name: mpd
 
 panel_custom:
   - name: alarm
@@ -187,5 +190,4 @@ binary_sensor: !include binary_sensors.yaml
 input_boolean: !include input_boolean.yaml
 input_number: !include input_numbers.yaml
 alarm_control_panel: !include alarm.yaml
-#packages: !include_dir_named packages
 #input_select: !include input-selects.yaml
