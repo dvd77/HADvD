@@ -121,7 +121,7 @@
         state: off
       group.slaapkamer_plafond:
         state: on
-        brightness: 80
+        brightness: 1
       light.afzuigkap:
         state: off
       group.plafond_keuken:
@@ -132,7 +132,7 @@
         state: off
       light.overloop:
         state: on
-        brightness: 144
+        brightness: 1
       switch.gang_lamp:
         state: off
       switch.sfeerhaard:

@@ -1,11 +1,14 @@
 
 #Sensors
-
+sensor.pws_temp_c:
+  friendly_name: Buiten temperatuur
+sensor.pws_feelslike_c:
+  friendly_name: Gevoelstemperatuur
 
 sensor.tuin_humidity:
   icon: mdi:water-percent
-sensor.badkamer_humidity:
-  icon: mdi:water-percent
+
+
 sensor.hp_ilo_cpu_fanspeed:
   icon: mdi:fan
 sensor.hp_ilo_cpu_temperature:
@@ -14,6 +17,7 @@ sensor.hp_ilo_inlet_temperature:
   icon: mdi:thermometer-lines
 sensor.humidity_158d00019d34bb:
   friendly_name: Badkamer vochtigheid
+  icon: mdi:water-percent
 sensor.temperature_158d00019d34bb:
   friendly_name: Badkamer temperatuur
 sensor.voordeur_battery:
@@ -41,6 +45,15 @@ binary_sensor.door_window_sensor_158d0001e4548d:
   friendly_name: Keukenraam
 binary_sensor.door_window_sensor_158d0001dacff3:
   friendly_name: Dakterras
+
+sensor.living_room_thermostat_humidity:
+  friendly_name: Luchtvochtigheid Huiskamer
+  icon: mdi:water-percent
+sensor.living_room_thermostat_temperature:
+  friendly_name: Temperatuur
+sensor.living_room_thermostat_target:
+  friendly_name: Ingestelde temperatuur
+
 
 
 

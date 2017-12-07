@@ -83,6 +83,12 @@ emulated_hue:
 nest:
   client_id: !secret nestclientid
   client_secret: !secret nestsecret
+  sensors:
+    monitored_conditions:
+      - 'temperature'
+      - 'humidity'
+      - 'target'
+      
 
 
 
@@ -147,13 +153,27 @@ notify:
     services:
       - service: ios_iphonedaniel
 
+#device_tracker:
+#  - platform: unifi
+#    host: !secret unifi_host
+#    port: 8443
+#    username: !secret unifi_username
+#    password: !secret unifi_password
+#    verify_ssl: false
+
 device_tracker:
-  - platform: unifi
-    host: !secret unifi_host
-    port: 8443
+  - platform: unifi_direct
+    host: !secret unifi_apbeneden
     username: !secret unifi_username
     password: !secret unifi_password
-    verify_ssl: false
+    interval_seconds: 12
+  - platform: unifi_direct
+    host: !secret unifi_apboven
+    username: !secret unifi_username
+    password: !secret unifi_password
+    interval_seconds: 12
+
+
 
 panel_custom:
   - name: alarm

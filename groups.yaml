@@ -8,6 +8,7 @@ default_view:
  name: Main
  entities:
    - group.camera_voordeur
+   - group.nest
    - group.woonkamer
    - group.eettafel
    - group.keuken
@@ -20,6 +21,8 @@ Boven:
  entities:
    - group.gang
    - group.slaapkamer
+   - group.badkamer_klimaat
+   - group.ventilatie
 Utility:
  view: yes
  entities:
@@ -32,10 +35,8 @@ Utility:
    - sensor.humidity_158d00019d34bb
    - sensor.temperature_158d00019d34bb
    - group.xiaomi
-   - climate.living_room
+   - group.nest
    - group.battery_level
-
-
 
 Security:
  view: yes
@@ -47,12 +48,14 @@ Security:
    - group.camera
    - alarm_control_panel.house
 
-Weer:
+Klimaat:
   view: yes
   entities:
     - group.buienradar
+    - group.weer
     - group.weer_vooruitzicht
-    - group.klimaat
+
+
 
 Graphs:
   name: Grafieken
@@ -90,13 +93,7 @@ Energie:
     - sensor.power_today
     - sensor.gas_current
     - sensor.gas_today
-Toon:
- entities:
-    - climate.toon_van_eneco
-    - scene.toon_comfort
-    - scene.toon_thuis
-    - scene.toon_slapen
-    - scene.toon_weg
+
 Woonkamer:
  entities:
     - light.dressoir
@@ -132,6 +129,11 @@ Plafond Keuken:
     - light.plafond_keuken2
     - light.plafond_keuken3
     - light.plafond_keuken4
+Ventilatie:
+  entities:
+    - switch.ventilatie_stand_1
+    - switch.ventilatie_stand_2
+    - switch.ventilatie_stand_3
 
 
 Gang:
@@ -183,8 +185,6 @@ Schakelaars:
     - switch.sierhaard
     - switch.kerstboom
 
-
-
 Speedtest:
     - sensor.speedtest_download
     - sensor.speedtest_upload
@@ -218,14 +218,19 @@ Deuren en Ramen:
     - binary_sensor.door_window_sensor_158d0001e4548d
     - binary_sensor.door_window_sensor_158d0001dacff3
 
-Klimaat:
+Weer:
   entities:
 #    - sensor.tuin_temperature
 #    - sensor.tuin_humidity
     - sensor.pws_temp_c
     - sensor.pws_weather
-    - sensor.badkamer_temperature
-    - sensor.badkamer_humidity
+    - sensor.pws_feelslike_c
+    - sensor.pws_pressure_mb
+
+Badkamer klimaat:
+  entities:
+    - sensor.humidity_158d00019d34bb
+    - sensor.temperature_158d00019d34bb
 
 
 Buienradar:
@@ -233,13 +238,9 @@ Buienradar:
 
 Weer vooruitzicht:
     - sensor.pws_weather_1d_metric
-    - sensor.pws_weather_1n_metric
     - sensor.pws_weather_2d_metric
-    - sensor.pws_weather_2n_metric
     - sensor.pws_weather_3d_metric
-    - sensor.pws_weather_3n_metric
     - sensor.pws_weather_4d_metric
-    - sensor.pws_weather_4n_metric
 
 
 Scenes:
@@ -282,3 +283,10 @@ Battery level:
     - sensor.dakterras_battery
     - sensor.badkamer_battery
     - sensor.ikea_ab_battery
+
+Nest:
+  entities:
+    - climate.living_room
+    - sensor.living_room_thermostat_humidity
+    - sensor.living_room_thermostat_temperature
+    - sensor.living_room_thermostat_target

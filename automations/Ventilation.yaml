@@ -17,7 +17,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.humidity_158d00019d34bb
-      above: 76
+      above: 73
   condition:
     - condition: state
       entity_id: input_boolean.slapen
@@ -33,7 +33,7 @@
   trigger:
     - platform: numeric_state
       entity_id: sensor.humidity_158d00019d34bb
-      below: 74
+      below: 69
   action:
     - service: switch.turn_off
       entity_id:

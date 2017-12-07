@@ -44,12 +44,12 @@
   name: Daniel to Work
   api_key: !secret google_maps_key
   origin: device_tracker.iphonedaniel
-  destination: "Van Heuven Goedhartlaan 1, Amstelveen"
+  destination: !secret work_daniel
 - platform: google_travel_time
   name: Judith to work
   api_key: !secret google_maps_key
   origin: device_tracker.iphone_van_judith
-  destination: "Parklaan 1, Hoofddorp"
+  destination: !secret work_judith
 
 
 
@@ -61,19 +61,19 @@
     - feelslike_c
     - temp_c
     - weather
+    - weather_1d_metric
+    - weather_2d_metric
+    - weather_3d_metric
+    - weather_4d_metric
+    - pressure_mb
+
 
 
 #- platform: dsmr
 #  host: 192.168.0.4
-#  dsmr_version: 4
+#  dsmr_version: 5
 
-- platform: nest
-  monitored_conditions:
-    - 'weather_temperature'
-    - 'weather_humidity'
-    - 'weather_condition'
-    - 'wind_speed'
-    - 'wind_direction'
+
 
 - platform: template
   sensors:

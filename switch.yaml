@@ -118,7 +118,7 @@
   retain: true
 
 - platform: mqtt
-  name: "gang_lamp"
+  name: "Gang lamp"
   command_topic: "cmnd/sw9/power"
   state_topic: "stat/sw9/POWER"
   qos: 1
